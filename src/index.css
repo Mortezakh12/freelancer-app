@@ -52,3 +52,48 @@
     }
   }
 }
+
+@layer components {
+  .textField__input {
+    @apply w-full py-3 px-4 rounded-xl text-secondary-900 border border-gray-300 hover:border-primary-500 focus:border-primary-500 focus:bg-white transition-all duration-300 ease-in-out focus:shadow-lg focus:shadow-primary-200;
+  }
+  .btn {
+    @apply px-3 py-1 rounded-xl text-secondary-900 border;
+  }
+  .btn--primary {
+    @apply px-3 py-1 font-bold rounded-xl transition-all duration-300 bg-primary-900 hover:bg-primary-800 shadow-primary-800 text-primary-100;
+  }
+  .btn--secondary {
+    @apply bg-secondary-600 text-secondary-100;
+  }
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Vazir";
+  min-height: 100vh;
+  user-select: none;
+  background-color: rgb(var(--background-app-rgb));
+}
+* {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  outline: none;
+  padding: 0;
+  margin: 0;
+}
+button {
+  cursor: pointer;
+  outline: none;
+}
+button:disabled {
+  cursor: default;
+  background-color: rgb(var(--color-secondary-100));
+  pointer-events: none;
+  box-shadow: none;
+}
+label {
+  display: block;
+}
