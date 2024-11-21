@@ -9,8 +9,9 @@ import { useState } from "react";
 
 function ProjectRow({ project, index }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   return (
-    <Table.Row key={project._id}>
+    <Table.Row >
       <td>{index + 1}</td>
       <td>{truncateText(project.title, 30)}</td>
       <td>{project.category.title}</td>
@@ -32,24 +33,36 @@ function ProjectRow({ project, index }) {
         ) : (
           <span className="badge badge--danger">بسته</span>
         )}
-      </td>
-      <div className="flex items-center gap-x-4">
-        <button onClick={()=>setIsEditOpen(true)}>
-          <TbPencilMinus className="w-5 h-5 text-primary-900" />
-        </button>
-        <Modal
-          onClose={() => {
-            setIsEditOpen(false);
-          }}
-          title="modal title"
-          open={isEditOpen}
-        >
-          this is modal...
-        </Modal>
-        <button>
-          <HiOutlineTrash className="w-5 h-5 text-error" />
-        </button>
-      </div>
+        </td>
+        <td>
+        <div className="flex items-center gap-x-4">
+            <button onClick={() => setIsEditOpen(true)}>
+              <TbPencilMinus className="w-5 h-5 text-primary-900" />
+            </button>
+            <Modal
+              onClose={() => {
+                setIsEditOpen(false);
+              }}
+              title={`ویرایش ${project.title}`}
+              open={isEditOpen}
+            >
+              this is modal...
+            </Modal>
+          
+            <button onClick={()=>setIsDeleteOpen(true)}>
+              <HiOutlineTrash className="w-5 h-5 text-error" />
+            </button>
+            <Modal
+              onClose={() => {
+                setIsDeleteOpen(false)
+              }}
+              title={`حذف ${project.title}`}
+              open={isDeleteOpen}
+            >
+              this is modal...
+            </Modal>
+        </div>
+        </td>
     </Table.Row>
   );
 }
