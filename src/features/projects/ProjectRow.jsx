@@ -6,12 +6,15 @@ import truncateText from "../../utils/truncateText";
 import { HiOutlineTrash } from "react-icons/hi";
 import Modal from "../../ui/Modal";
 import { useState } from "react";
+import ConfirmDelete from "../../ui/ConfirmDelete";
+import useRemoveProject from "./useRemoveProject";
 
 function ProjectRow({ project, index }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const { removeProject, isDeleting } = useRemoveProject();
   return (
-    <Table.Row >
+    <Table.Row>
       <td>{index + 1}</td>
       <td>{truncateText(project.title, 30)}</td>
       <td>{project.category.title}</td>
@@ -33,36 +36,45 @@ function ProjectRow({ project, index }) {
         ) : (
           <span className="badge badge--danger">بسته</span>
         )}
-        </td>
-        <td>
+      </td>
+      <td>
         <div className="flex items-center gap-x-4">
-            <button onClick={() => setIsEditOpen(true)}>
-              <TbPencilMinus className="w-5 h-5 text-primary-900" />
-            </button>
-            <Modal
-              onClose={() => {
-                setIsEditOpen(false);
-              }}
-              title={`ویرایش ${project.title}`}
-              open={isEditOpen}
-            >
-              this is modal...
-            </Modal>
-          
-            <button onClick={()=>setIsDeleteOpen(true)}>
-              <HiOutlineTrash className="w-5 h-5 text-error" />
-            </button>
-            <Modal
-              onClose={() => {
-                setIsDeleteOpen(false)
-              }}
-              title={`حذف ${project.title}`}
-              open={isDeleteOpen}
-            >
-              this is modal...
-            </Modal>
+          <button onClick={() => setIsEditOpen(true)}>
+            <TbPencilMinus className="w-5 h-5 text-primary-900" />
+          </button>
+          <Modal
+            onClose={() => {
+              setIsEditOpen(false);
+            }}
+            title={`ویرایش ${project.title}`}
+            open={isEditOpen}
+          >
+            this is modal...
+          </Modal>
+
+          <button onClick={() => setIsDeleteOpen(true)}>
+            <HiOutlineTrash className="w-5 h-5 text-error" />
+          </button>
+          <Modal
+            onClose={() => {
+              setIsDeleteOpen(false);
+            }}
+            title={`حذف ${project.title}`}
+            open={isDeleteOpen}
+          >
+            <ConfirmDelete
+              resourseName={project.title}
+              onClose={() => setIsDeleteOpen(false)}
+              onConfirm={() =>
+                removeProject(project._id, {
+                  onSuccess: () => setIsDeleteOpen(false),
+                })
+              }
+              disabled={false}
+            />
+          </Modal>
         </div>
-        </td>
+      </td>
     </Table.Row>
   );
 }
