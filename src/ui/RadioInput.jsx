@@ -4,9 +4,8 @@ const RadioInput = ({
   name,
   value,
   register,
-  checked,
-  vslidationSchema,
-  errors,
+  validationSchema,
+  watch,
 }) => {
   return (
     <div className="flex items-center text-secondary-600 gap-x-2">
@@ -16,17 +15,10 @@ const RadioInput = ({
         name={name}
         id={id}
         value={value}
-        checked={checked}
-        {...register(name, vslidationSchema)}
+        {...register(name, validationSchema)}
+        checked={watch(name) === value}
       />
-      <label htmlFor={id}>
-        {label}
-        {errors && (
-          <span className="text-error block text-sm mt-2 ">
-            {errors[name]?.message}
-          </span>
-        )}
-      </label>
+      <label htmlFor={id}>{label}</label>
     </div>
   );
 };
