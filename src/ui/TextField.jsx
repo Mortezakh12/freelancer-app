@@ -1,16 +1,30 @@
-function TextField({label,value,onChange,name,}) {
+function TextField({
+  label,
+  errors,
+  name,
+  register,
+  vslidationSchema,
+  type = "text",
+  required,
+}) {
   return (
     <div>
-      <label htmlFor={name} className="mb-1 block">{label}</label>
+      <label htmlFor={name} className="mb-1 block text-secondary-700">
+        {label}
+        {required && <span className="text-error">*</span>}
+      </label>
       <input
-      name={name}
-        value={value}
+        {...register(name, vslidationSchema)}
         id={name}
-        onChange={onChange}
         className="textField__input"
-        type="tel"
+        type={type}
         autoComplete="off"
       />
+      {errors && errors[name] && (
+        <span className="text-error block text-sm mt-2">
+          {errors[name]?.message}
+        </span>
+      )}
     </div>
   );
 }
