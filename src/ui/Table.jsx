@@ -1,5 +1,9 @@
 function Table({ children }) {
-  return <div className="bg-secondary-0 overflow-x-auto">{children}</div>;
+  return (
+    <div className="bg-secondary-0 overflow-x-auto">
+      <table>{children}</table>
+    </div>
+  );
 }
 export default Table;
 

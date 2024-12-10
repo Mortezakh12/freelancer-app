@@ -8,11 +8,12 @@ import Modal from "../../ui/Modal";
 import { useState } from "react";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import useRemoveProject from "./useRemoveProject";
+import CreateProjectForm from "./CreateProjectForm";
 
 function ProjectRow({ project, index }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
-  const { removeProject, isDeleting } = useRemoveProject();
+  const { removeProject} = useRemoveProject();
   return (
     <Table.Row>
       <td>{index + 1}</td>
@@ -49,7 +50,7 @@ function ProjectRow({ project, index }) {
             title={`ویرایش ${project.title}`}
             open={isEditOpen}
           >
-            this is modal...
+            <CreateProjectForm onClose={() => setIsEditOpen(false)}/>
           </Modal>
 
           <button onClick={() => setIsDeleteOpen(true)}>
