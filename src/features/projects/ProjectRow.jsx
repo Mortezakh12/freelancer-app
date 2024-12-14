@@ -50,7 +50,7 @@ function ProjectRow({ project, index }) {
             title={`ویرایش ${project.title}`}
             open={isEditOpen}
           >
-            <CreateProjectForm onClose={() => setIsEditOpen(false)}/>
+            <CreateProjectForm projectToEdit={project} onClose={() => setIsEditOpen(false)}/>
           </Modal>
 
           <button onClick={() => setIsDeleteOpen(true)}>
