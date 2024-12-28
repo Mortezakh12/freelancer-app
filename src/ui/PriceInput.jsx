@@ -9,8 +9,15 @@ const PriceInput = () => {
   };
 
   const onSubmit = (data) => {
-    console.log(data);
+    try {
+      console.log(data);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
+
+  // State to hold the formatted price
+  const formattedPrice = formatPrice(price.replace(/,/g, ''));
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -19,12 +26,13 @@ const PriceInput = () => {
         id="price"
         name="price"
         type="text"
-        {...register('price')}
-        onChange={(e) => {
-          e.target.value = formatPrice(e.target.value.replace(/,/g, ''));
-        }}
+        {...register('price', {
+          onChange: (event) => {
+            const { value } = event.target;
+            event.target.value = formatPrice(value.replace(/,/g, ''));
+          },
+        })}
       />
-      <span>{formatPrice(price.replace(/,/g, ''))}</span>
       <button type="submit">Submit</button>
     </form>
   );
