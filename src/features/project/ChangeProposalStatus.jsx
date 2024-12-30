@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
-import { RHFSelect } from "../../ui/RHFSelect";
 import { useParams } from "react-router-dom";
 import useChangeProposalStatus from "./useChangeProposalStatus";
 import { useQueryClient } from "@tanstack/react-query";
 import Loader from "../../ui/Loader";
+import RHFSelect from "../../ui/RHFSelect";
 
 const options = [
   { value: 0, label: "رد شده" },
