@@ -3,7 +3,7 @@ import useUser from "../features/authentication/useUser";
 import HeaderMenue from "./HeaderMenue";
 
 function Header() {
-  const { isLoading, user } = useUser();
+  const { isLoading} = useUser();
   return (
     <div className="bg-secondary-0 py-4 px-8 border-b border-secondary-200">
       <div
