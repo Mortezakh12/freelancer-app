@@ -12,6 +12,10 @@ import Project from "./pages/Project";
 import PriceInput from "./ui/PriceInput";
 import { DarkModeProvider } from "./context/DarkModeContext";
 import OwnerLayout from "./features/owner/OwnerLayout";
+import FreelancerDashboard from "./pages/FreelancerDashboard";
+import Proposals from "./pages/Proposals";
+import SubmittedProjects from "./pages/SubmittedProjects";
+import FreelancerLayout from "./features/freelancer/FreelancerLayout";
 
 const queryClient = new QueryClient();
 
@@ -24,11 +28,19 @@ function App() {
           <Route path="/price" element={<PriceInput />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/complete-profile" element={<CompleteProfile />} />
+          {/* Owner routes */}
           <Route path="/owner" element={<OwnerLayout />}>
             <Route index element={<Navigate to="dashboard" replace />} />
             <Route path="dashboard" element={<OwnerDashboard />} />
             <Route path="projects" element={<Projects />} />
             <Route path="projects/:id" element={<Project />} />
+          </Route>
+          {/* Freelancer routes */}
+          <Route path="/freelancer" element={<FreelancerLayout />}>
+            <Route index element={<Navigate to="dashboard" replace />} />
+            <Route path="dashboard" element={<FreelancerDashboard />} />
+            <Route path="proposals" element={<Proposals />} />
+            <Route path="projects" element={<SubmittedProjects />} />
           </Route>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />

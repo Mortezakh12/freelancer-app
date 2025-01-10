@@ -1,15 +1,16 @@
 import DashboardHeader from "../../ui/DashboardHeader";
 import Loader from "../../ui/Loader";
-import useOwnerProjects from "../projects/useOwnerProjects";
+import useProposals from "../proposals/useProposals";
 import Stats from "./Stats";
 
 function DashboardLayout() {
-    const{isLoading,projects}=useOwnerProjects()
+    const {isLoading,proposals}=useProposals()
+
     if(isLoading) return <Loader/>
   return (
     <div>
       <DashboardHeader />
-      <Stats projects={projects} />
+      <Stats proposals={proposals} />
     </div>
   );
 }
