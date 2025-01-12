@@ -4,6 +4,7 @@ import useChangeProposalStatus from "./useChangeProposalStatus";
 import { useQueryClient } from "@tanstack/react-query";
 import Loader from "../../ui/Loader";
 import RHFSelect from "../../ui/RHFSelect";
+import toast from "react-hot-toast";
 
 const options = [
   { value: 0, label: "رد شده" },
@@ -20,14 +21,14 @@ function ChangeProposalStatus({ proposalId, onClose }) {
 
   const onSubmit = (data) => {
     changeProposalStatus(
-      {
-        id: proposalId,
-        data,
-      },
+      { proposalId, projectId, ...data },
       {
         onSuccess: () => {
           onClose();
           queryClient.invalidateQueries({ queryKey: ["project", projectId] });
+        },
+        onError: (error) => {
+          console.log(error);
         },
       }
     );
