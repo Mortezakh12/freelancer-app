@@ -1,7 +1,7 @@
 import useUser from "./useUser";
 
 function UserAvatar() {
-  const {  user } = useUser();
+  const { user } = useUser();
   return (
     <div className="flex items-center gap-x-2 text-secondary-200">
       <img
@@ -9,9 +9,7 @@ function UserAvatar() {
         src="/user.jpg"
         alt="user-account"
       />
-      <span>
-        {user?.name}
-      </span>
+      <span>{user?.name}</span>
     </div>
   );
 }
