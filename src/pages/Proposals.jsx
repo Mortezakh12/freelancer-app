@@ -1,13 +1,13 @@
-import ProposalTable from "../features/proposals/ProposalTable"
+import ProposalTable from "../features/proposals/ProposalTable";
 
 function Proposals() {
   return (
     <div>
       <h1 className="font-black text-secondary-700 mb-8 text-xl">
-        پروپوزال های شما
+        لیست پروپوزال ها
       </h1>
-      <ProposalTable/>
+      <ProposalTable />
     </div>
-  )
+  );
 }
-export default Proposals
+export default Proposals;
