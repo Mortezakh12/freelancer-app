@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const AuthContainer = () => {
   const navigate = useNavigate();
-  const [step, setStep] = useState(2);
+  const [step, setStep] = useState(1);
   // const [phoneNumber, setPhoneNumber] = useState("09358851332");
 
   const { handleSubmit, register, getValues } = useForm();
@@ -21,7 +21,7 @@ const AuthContainer = () => {
     if (user) {
       navigate("/", { replace: true });
     }
-  }, [user,navigate]);
+  }, [user, navigate]);
 
   const {
     isPending: isSendOtp,

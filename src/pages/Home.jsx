@@ -10,8 +10,6 @@ import Header from "../ui/Header";
 const Home = () => {
   return (
     <div className="min-h-screen bg-secondary-0">
-      <Header />
-
       {/* Hero Section */}
       <section className="container xl:max-w-screen-xl mx-auto px-4 py-16">
         <div className="flex flex-col items-center text-center gap-8">
@@ -26,7 +24,7 @@ const Home = () => {
             <Link to="/auth" className="btn btn--primary">
               شروع کنید
             </Link>
-            <Link to="/projects" className="btn btn--outline">
+            <Link to="/auth" className="btn btn--outline">
               مشاهده پروژه‌ها
             </Link>
           </div>
